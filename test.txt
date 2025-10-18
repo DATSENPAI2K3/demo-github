@@ -1,0 +1,52 @@
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+// var maxDepth = function(root) {
+//     let x = root.val;
+//     return x;
+// };
+
+// function check(root){
+//     if(root)
+// }
+
+
+var maxDepth = function(root) {
+    if(root == undefined) return 0;
+    let level = 1;
+    level = checkIfIsLeaf(root.val,root.left,root.right,level );    
+    return level;
+};
+function checkIfIsLeaf(val, left, right, level)
+{
+    if(val == null) return;
+    console.log(val,left,right,level)    
+    level++;
+    if(left == null && right == null)
+        return level;
+    
+    if(left != null)
+    {
+        if(left.left != null || left.right != null)
+        {
+            return checkIfIsLeaf(left.val, left.left, left.right, level)
+        }
+    }
+    if(right != null)
+    {
+        if(right.left != null || right.right != null)
+        {
+            return checkIfIsLeaf(right.val, right.left, right.right, level)
+        }       
+    }
+    return level;
+}
